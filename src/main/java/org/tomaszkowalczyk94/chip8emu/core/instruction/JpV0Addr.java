@@ -5,9 +5,9 @@ import org.tomaszkowalczyk94.xbit.XBit16;
 
 public class JpV0Addr extends AbstractInstruction {
     public void execute(XBit16 instruction, Cpu cpu) {
-        XBit16 addr = getLast12Bits(instruction);
-
-        cpu.getRegisters().programCounter = (byte)(addr.getUnsignedValue() + cpu.getRegisters().generalPurpose[0]);
+//        XBit16 addr = getLast12Bits(instruction);
+//
+//        cpu.getRegisters().programCounter = (byte)(addr.getUnsignedValue() + cpu.getRegisters().generalPurpose[0]);
 
     }
 }
