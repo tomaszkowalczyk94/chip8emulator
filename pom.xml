@@ -2,8 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.tomaszkowalczyk94.chip8emulator</groupId>
-  <artifactId>chip8emulator</artifactId>
+  <groupId>org.tomaszkowalczyk94.chip8emu</groupId>
+  <artifactId>chip8emu-core</artifactId>
+
   <version>1.0</version>
     <build>
         <plugins>
@@ -19,7 +20,7 @@
     </build>
     <packaging>jar</packaging>
 
-  <name>chip8emulator</name>
+  <name>chip8emu-core</name>
   <url>http://maven.apache.org</url>
 
   <properties>
@@ -39,18 +40,18 @@
       <version>1.16.6</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>com.github.tomaszkowalczyk94</groupId>
-      <artifactId>xbit</artifactId>
-      <version>0c87e3e</version>
-    </dependency>
+      <dependency>
+          <groupId>org.tomaszkowalczyk94.xbit</groupId>
+          <artifactId>xbit</artifactId>
+          <version>1.2.2</version>
+      </dependency>
   </dependencies>
 
-  <repositories>
-      <repository>
-          <id>jitpack.io</id>
-          <url>https://jitpack.io</url>
-      </repository>
-  </repositories>
+    <repositories>
+        <repository>
+            <id>myMavenRepoRead</id>
+            <url>https://mymavenrepo.com/repo/PmCL80jeU82fLVGyuUt4/</url>
+        </repository>
+    </repositories>
 
 </project>
