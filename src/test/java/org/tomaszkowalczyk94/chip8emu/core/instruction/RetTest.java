@@ -1,9 +1,6 @@
 package org.tomaszkowalczyk94.chip8emu.core.instruction;
 
 import org.junit.Test;
-import org.tomaszkowalczyk94.chip8emu.core.Cpu;
-import org.tomaszkowalczyk94.xbit.XBit16;
-import org.tomaszkowalczyk94.xbit.XBit8;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +9,7 @@ public class RetTest {
     @Test
     public void execute() {
 
-//        Cpu cpu = new Cpu();
+//        Chip8 cpu = new Chip8();
 //        cpu.getMemory().write(0x0050, XBit8.valueOfUnsigned(255));
 //        cpu.getMemory().write(0x0051, XBit8.valueOfUnsigned(255));
 //        cpu.getRegisters().stackPointer = 0x0050;

@@ -1,17 +1,17 @@
 package org.tomaszkowalczyk94.chip8emu.core.instruction;
 
-import org.tomaszkowalczyk94.chip8emu.core.Cpu;
+import org.tomaszkowalczyk94.chip8emu.core.Chip8;
 import org.tomaszkowalczyk94.xbit.XBit16;
 
 public class SneVxByte extends AbstractInstruction {
-    public void execute(XBit16 instruction, Cpu cpu) {
+    public void execute(XBit16 instruction, Chip8 chip8) {
 //        int x = getFrom11And8Bits(instruction).getSignedValue();
 //        int kk = getLast8Bits(instruction).getSignedValue();
 //
-//        if(cpu.getRegisters().generalPurpose[x] != kk) {
-//            cpu.getRegisters().programCounter += 4;
+//        if(chip8.getRegisters().generalPurpose[x] != kk) {
+//            chip8.getRegisters().programCounter += 4;
 //            return;
 //        }
-//        cpu.getRegisters().programCounter += 2;
+//        chip8.getRegisters().programCounter += 2;
     }
 }

@@ -8,12 +8,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        Cpu cpu = new Cpu();
+        Chip8 chip8 = new Chip8();
 
-        cpu.run();
-
-
-
+        chip8.run();
     }
 }

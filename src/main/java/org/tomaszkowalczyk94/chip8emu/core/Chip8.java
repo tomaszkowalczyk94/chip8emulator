@@ -9,8 +9,13 @@ import org.tomaszkowalczyk94.xbit.XBit16;
 import org.tomaszkowalczyk94.xbit.XBit8;
 import org.tomaszkowalczyk94.xbit.XBitUtils;
 
+/**
+ * The main class of emulator.
+ * {@link Chip8} class stores memory and registers values. Have method which can run emulation.
+ * This class executes drawing pixels on screen.
+ */
 @Data
-public class Cpu {
+public class Chip8 {
 
     Memory memory = new Memory();
     Registers registers = new Registers();
@@ -20,7 +25,7 @@ public class Cpu {
     Drawer drawer = new ConsoleDrawer();
 
 
-    public Cpu() {
+    public Chip8() {
 
     }
 
@@ -35,7 +40,7 @@ public class Cpu {
         }
     }
 
-    protected XBit16 fetch() {
+    private XBit16 fetch() {
 
         XBit16 pcValue = registers.pc;
         XBit8 highOperand = memory.read(pcValue.getUnsignedValue());

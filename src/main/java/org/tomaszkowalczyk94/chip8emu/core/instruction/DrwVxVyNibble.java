@@ -1,6 +1,6 @@
 package org.tomaszkowalczyk94.chip8emu.core.instruction;
 
-import org.tomaszkowalczyk94.chip8emu.core.Cpu;
+import org.tomaszkowalczyk94.chip8emu.core.Chip8;
 import org.tomaszkowalczyk94.chip8emu.core.screen.ScreenManager;
 import org.tomaszkowalczyk94.xbit.XBit16;
 import org.tomaszkowalczyk94.xbit.XBit8;
@@ -21,19 +21,19 @@ public class DrwVxVyNibble extends AbstractInstruction {
     /**
      * {@inheritDoc}
      */
-    public void execute(XBit16 instruction, Cpu cpu) {
+    public void execute(XBit16 instruction, Chip8 chip8) {
         int regxId = instruction.getValueOfBits(11, 8);
         int regyId = instruction.getValueOfBits(7, 4);
         int n = instruction.getValueOfBits(3, 0);
 
-        int xPos = cpu.getRegisters().generalPurpose[regxId].getUnsignedValue();
-        int yPos = cpu.getRegisters().generalPurpose[regyId].getUnsignedValue();
+        int xPos = chip8.getRegisters().generalPurpose[regxId].getUnsignedValue();
+        int yPos = chip8.getRegisters().generalPurpose[regyId].getUnsignedValue();
 
-        cpu.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(0);
-        drawSprite(cpu, xPos, yPos, n);
+        chip8.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(0);
+        drawSprite(chip8, xPos, yPos, n);
 
-        cpu.getRegisters().pc = XBitUtils.incrementBy(
-                cpu.getRegisters().pc,
+        chip8.getRegisters().pc = XBitUtils.incrementBy(
+                chip8.getRegisters().pc,
                 2
         );
     }
@@ -41,19 +41,19 @@ public class DrwVxVyNibble extends AbstractInstruction {
     /**
      * Drawing sprite in display in the given position
      *
-     * @param cpu
+     * @param chip8
      * @param xPos horizontal position of sprite in display. The top of display have 0 value.
      * @param yPos vertical position of sprite in display. TMost on the left have 0 value.
      * @param n
      */
-    private void drawSprite(Cpu cpu, int xPos, int yPos, int n) {
-        ScreenManager screenManager = cpu.getScreenManager();
+    private void drawSprite(Chip8 chip8, int xPos, int yPos, int n) {
+        ScreenManager screenManager = chip8.getScreenManager();
 
-        int iValue = cpu.getRegisters().i.getUnsignedValue();
+        int iValue = chip8.getRegisters().i.getUnsignedValue();
 
         for (int memorySpriteAddress = iValue; memorySpriteAddress < iValue + n; memorySpriteAddress++) {
 
-            XBit8 spriteByte = cpu.getMemory().read(memorySpriteAddress);
+            XBit8 spriteByte = chip8.getMemory().read(memorySpriteAddress);
 
             for (int bitIndex = 7; bitIndex >= 0; bitIndex--) {
 
@@ -62,10 +62,10 @@ public class DrwVxVyNibble extends AbstractInstruction {
 
 
                 boolean oldPixelValue = screenManager.getPixel(positionXInDisplay, positionYInDisplay);
-                boolean newPixelValue = cpu.getScreenManager().setPixel(positionXInDisplay, positionYInDisplay, spriteByte.getBit(bitIndex));
+                boolean newPixelValue = chip8.getScreenManager().setPixel(positionXInDisplay, positionYInDisplay, spriteByte.getBit(bitIndex));
 
                 if (oldPixelValue && !newPixelValue) {
-                    cpu.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(1);
+                    chip8.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(1);
                 }
             }
 

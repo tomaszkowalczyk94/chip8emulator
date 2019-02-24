@@ -1,17 +1,10 @@
 package org.tomaszkowalczyk94.chip8emu.core.instruction;
 
-import org.junit.Test;
-import org.tomaszkowalczyk94.chip8emu.core.Cpu;
-import org.tomaszkowalczyk94.xbit.XBit16;
-import org.tomaszkowalczyk94.xbit.XBit8;
-
-import static org.junit.Assert.*;
-
 public class AddVxVyTest {
 //
 //    @Test
 //    public void execute1() {
-//        Cpu cpu = new Cpu();
+//        Chip8 cpu = new Chip8();
 //        cpu.getRegisters().generalPurpose[0xA] = (byte)0xFF;
 //        cpu.getRegisters().generalPurpose[0xB] = (byte)0x01;
 //        XBit16 instruction = XBit16.valueOfUnsigned(0x7AB4);
@@ -25,7 +18,7 @@ public class AddVxVyTest {
 //
 //    @Test
 //    public void execute2() {
-//        Cpu cpu = new Cpu();
+//        Chip8 cpu = new Chip8();
 //        cpu.getRegisters().generalPurpose[0xA] = (byte)0xFF;
 //        cpu.getRegisters().generalPurpose[0xB] = (byte)0xFF;
 //        XBit16 instruction = XBit16.valueOfUnsigned(0x7AB4);
