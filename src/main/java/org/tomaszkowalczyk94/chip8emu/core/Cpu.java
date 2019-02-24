@@ -2,6 +2,7 @@ package org.tomaszkowalczyk94.chip8emu.core;
 
 import lombok.Data;
 import org.tomaszkowalczyk94.chip8emu.core.instruction.AbstractInstruction;
+import org.tomaszkowalczyk94.chip8emu.core.screen.ConsoleDrawer;
 import org.tomaszkowalczyk94.chip8emu.core.screen.Drawer;
 import org.tomaszkowalczyk94.chip8emu.core.screen.ScreenManager;
 import org.tomaszkowalczyk94.xbit.XBit16;
@@ -16,12 +17,10 @@ public class Cpu {
     InstructionDecoder instructionDecoder = new InstructionDecoder();
     ScreenManager screenManager = new ScreenManager();
 
-    Drawer drawer;
+    Drawer drawer = new ConsoleDrawer();
 
 
     public Cpu() {
-
-
 
     }
 
@@ -33,7 +32,6 @@ public class Cpu {
 
             drawer.draw(screenManager.getScreen());
 
-            System.out.println("STOP DRAWING");
         }
     }
 

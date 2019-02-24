@@ -10,6 +10,11 @@ import org.tomaszkowalczyk94.xbit.XBit8;
  */
 abstract public class AbstractInstruction {
 
+    /**
+     * Executing the given instruction. All instructions have 2 bytes.
+     * @param instruction
+     * @param cpu
+     */
     abstract public void execute(XBit16 instruction, Cpu cpu);
 
     protected XBit16 getLast12Bits(XBit16 instruction) {
