@@ -3,6 +3,7 @@ package org.tomaszkowalczyk94.chip8emu.core.instruction;
 import org.junit.Test;
 import org.tomaszkowalczyk94.chip8emu.core.Cpu;
 import org.tomaszkowalczyk94.chip8emu.core.Memory;
+import org.tomaszkowalczyk94.chip8emu.core.screen.ConsoleDrawer;
 import org.tomaszkowalczyk94.xbit.XBit16;
 import org.tomaszkowalczyk94.xbit.XBit8;
 
@@ -42,5 +43,8 @@ public class DrwVxVyNibbleTest {
         assertEquals( false ,cpu.getScreenManager().getPixel(2, 1));
         assertEquals( false ,cpu.getScreenManager().getPixel(2, 3));
         assertEquals( false ,cpu.getScreenManager().getPixel(3, 2));
+
+        ConsoleDrawer drawer = new ConsoleDrawer();
+        drawer.draw(cpu.getScreenManager().getScreen());
     }
 }

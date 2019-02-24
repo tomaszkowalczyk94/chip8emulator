@@ -9,7 +9,7 @@ import org.tomaszkowalczyk94.xbit.XBitUtils;
 /**
  * Dxyn - DRW Vx, Vy, nibble
  * Display n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
- *
+ * <p>
  * The interpreter reads n bytes from memory, starting at the address stored in I. These bytes are then displayed as
  * sprites on screen at coordinates (Vx, Vy). Sprites are XORed onto the existing screen. If this causes any pixels to
  * be erased, VF is set to 1, otherwise it is set to 0. If the sprite is positioned so part of it is outside
@@ -40,6 +40,7 @@ public class DrwVxVyNibble extends AbstractInstruction {
 
     /**
      * Drawing sprite in display in the given position
+     *
      * @param cpu
      * @param xPos horizontal position of sprite in display. The top of display have 0 value.
      * @param yPos vertical position of sprite in display. TMost on the left have 0 value.
@@ -50,11 +51,11 @@ public class DrwVxVyNibble extends AbstractInstruction {
 
         int iValue = cpu.getRegisters().i.getUnsignedValue();
 
-        for(int memorySpriteAddress = iValue; memorySpriteAddress < iValue+n; memorySpriteAddress++) {
+        for (int memorySpriteAddress = iValue; memorySpriteAddress < iValue + n; memorySpriteAddress++) {
 
             XBit8 spriteByte = cpu.getMemory().read(memorySpriteAddress);
 
-            for(int bitIndex = 7; bitIndex>=0; bitIndex--) {
+            for (int bitIndex = 7; bitIndex >= 0; bitIndex--) {
 
                 int positionXInDisplay = calculatePositionXInDisplay(xPos, bitIndex);
                 int positionYInDisplay = calculatePositionYInDisplay(yPos, iValue, memorySpriteAddress);
@@ -63,7 +64,7 @@ public class DrwVxVyNibble extends AbstractInstruction {
                 boolean oldPixelValue = screenManager.getPixel(positionXInDisplay, positionYInDisplay);
                 boolean newPixelValue = cpu.getScreenManager().setPixel(positionXInDisplay, positionYInDisplay, spriteByte.getBit(bitIndex));
 
-                if(oldPixelValue && !newPixelValue) {
+                if (oldPixelValue && !newPixelValue) {
                     cpu.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(1);
                 }
             }
@@ -73,18 +74,20 @@ public class DrwVxVyNibble extends AbstractInstruction {
 
     /**
      * calculate horizontal position of pixel in display
-     * @param xPos horizontal position of sprite in display (where will be put pixel (0,0) of sprite)
+     *
+     * @param xPos     horizontal position of sprite in display (where will be put pixel (0,0) of sprite)
      * @param bitIndex index of bit, in sprite. First index have number 7, the last 0.
      * @return
      */
     private int calculatePositionXInDisplay(int xPos, int bitIndex) {
-        return xPos + 7-bitIndex;
+        return xPos + 7 - bitIndex;
     }
 
     /**
      * calculate vartical position of pixel in display
-     * @param yPos vertical position of sprite in display (where will be put pixel (0,0) of sprite)
-     * @param firstSpriteMemoryAddress address of first byte of sprite
+     *
+     * @param yPos                       vertical position of sprite in display (where will be put pixel (0,0) of sprite)
+     * @param firstSpriteMemoryAddress   address of first byte of sprite
      * @param currentSpriteMemoryAddress address of sprite's byte, for withch will be calculated vertical position
      *                                   of pixel in display
      * @return vertical position of pixel in display
@@ -94,7 +97,7 @@ public class DrwVxVyNibble extends AbstractInstruction {
             int firstSpriteMemoryAddress,
             int currentSpriteMemoryAddress
     ) {
-        return currentSpriteMemoryAddress-firstSpriteMemoryAddress+yPos;
+        return currentSpriteMemoryAddress - firstSpriteMemoryAddress + yPos;
     }
 
 }
