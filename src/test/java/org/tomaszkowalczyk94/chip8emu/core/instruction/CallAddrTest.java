@@ -1,24 +1,26 @@
 package org.tomaszkowalczyk94.chip8emu.core.instruction;
 
 import org.junit.Test;
+import org.tomaszkowalczyk94.chip8emu.core.Chip8;
+import org.tomaszkowalczyk94.xbit.XBit16;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class CallAddrTest {
 
     @Test
     public void execute() {
-//        Chip8 cpu = new Chip8();
-//
-//        XBit16 instruction = XBit16.valueOfUnsigned(0x2AAA);
-//        new CallAddr().execute(instruction, cpu);
-//
-//        assertEquals(0x0054, cpu.getRegisters().stackPointer);
-//
-//        assertEquals(0x2, cpu.getMemory().read(0x0054));
-//        assertEquals(0x00, cpu.getMemory().read(0x0055));
-//
-//        assertEquals(0xAAA, cpu.getRegisters().programCounter);
+        Chip8 cpu = new Chip8();
+
+        XBit16 instruction = XBit16.valueOfUnsigned(0xAAA);
+        new CallAddr().execute(instruction, cpu);
+
+        assertEquals(1, cpu.getStack().size());
+        assertEquals(0x200, cpu.getStack().peek().getUnsignedValue());
+
+
+        assertEquals(0xAAA, cpu.getRegisters().pc.getUnsignedValue());
 
     }
 

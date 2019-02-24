@@ -9,6 +9,8 @@ import org.tomaszkowalczyk94.xbit.XBit16;
 import org.tomaszkowalczyk94.xbit.XBit8;
 import org.tomaszkowalczyk94.xbit.XBitUtils;
 
+import java.util.Stack;
+
 /**
  * The main class of emulator.
  * {@link Chip8} class stores memory and registers values. Have method which can run emulation.
@@ -24,6 +26,7 @@ public class Chip8 {
 
     Drawer drawer = new ConsoleDrawer();
 
+    Stack<XBit16> stack = new Stack<>();
 
     public Chip8() {
 

@@ -2,6 +2,9 @@ package org.tomaszkowalczyk94.chip8emu.core.screen;
 
 import lombok.Getter;
 
+/**
+ * Manage pixels off screen.
+ */
 public class ScreenManager {
 
     @Getter boolean[][] screen = new boolean[64][32];
@@ -21,5 +24,16 @@ public class ScreenManager {
         return screen[x][y];
     }
 
+    /**
+     * set all displey pixels to unset
+     */
+    public void clear() {
+        for(int y=0; y<32; y++) {
+            for(int x=0; x<64; x++) {
+                screen[x][y] = false;
+
+            }
+        }
+    }
 
 }

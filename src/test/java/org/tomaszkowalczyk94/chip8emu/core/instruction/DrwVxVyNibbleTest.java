@@ -43,8 +43,5 @@ public class DrwVxVyNibbleTest {
         assertEquals( false , chip8.getScreenManager().getPixel(2, 1));
         assertEquals( false , chip8.getScreenManager().getPixel(2, 3));
         assertEquals( false , chip8.getScreenManager().getPixel(3, 2));
-
-        ConsoleDrawer drawer = new ConsoleDrawer();
-        drawer.draw(chip8.getScreenManager().getScreen());
     }
 }
