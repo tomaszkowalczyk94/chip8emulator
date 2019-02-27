@@ -20,10 +20,12 @@ public class AddVxByte extends AbstractInstruction {
         int x = instruction.getValueOfBits(11, 8);
         XBit8 kkByte = XBit8.valueOfUnsigned(instruction.getValueOfBits(7, 0));
 
-        chip8.getRegisters().generalPurpose[x] = XBitUtils.and8bit(
+        XBitUtils.Arithmetic8bitResult arithmetic8bitResult = XBitUtils.addTwo8bits(
                 chip8.getRegisters().generalPurpose[x],
                 kkByte
         );
+
+        chip8.getRegisters().generalPurpose[x] = arithmetic8bitResult.result;
 
         incrementPc(chip8);
     }

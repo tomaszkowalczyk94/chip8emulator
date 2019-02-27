@@ -1,16 +1,41 @@
 package org.tomaszkowalczyk94.chip8emu.core;
 
+import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.tomaszkowalczyk94.chip8emu.core.screen.Drawer;
 import org.tomaszkowalczyk94.xbit.XBit16;
 import org.tomaszkowalczyk94.xbit.XBit8;
 
-public class TestProgram1 {
+/**
+ * Test program, which is drawing simple pattern on display.
+ */
+@RunWith(MockitoJUnitRunner.class)
+public class TestPatternProgram {
+
+    @Mock
+    Drawer drawer;
 
     @Test
     public void execute() {
         Chip8 chip8 = new Chip8();
+        chip8.setDrawer(drawer);
+
         loadTestProgram(chip8);
-        chip8.run();
+        chip8.runTo(XBit16.valueOfUnsigned(0x218));
+
+        for(int x = 3; x<64; x+=4) {
+            for(int y=3; y<32; y+=4) {
+                Assert.assertTrue(chip8.getScreenManager().getPixel(x,y));
+            }
+        }
+
+        Assert.assertFalse(chip8.getScreenManager().getPixel(2,3));
+        Assert.assertFalse(chip8.getScreenManager().getPixel(4,3));
+        Assert.assertFalse(chip8.getScreenManager().getPixel(3,4));
+        Assert.assertFalse(chip8.getScreenManager().getPixel(3,2));
     }
 
     private void loadTestProgram(Chip8 chip8) {

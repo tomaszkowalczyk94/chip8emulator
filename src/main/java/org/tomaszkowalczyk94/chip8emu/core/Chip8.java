@@ -32,15 +32,24 @@ public class Chip8 {
 
     }
 
-    public void run() {
-        while (true) {
-            XBit16 opcode = fetch();
-            AbstractInstruction instruction = instructionDecoder.decode(opcode);
-            instruction.execute(opcode, this);
-
-            drawer.draw(screenManager.getScreen());
-
+    public void runTo(XBit16 address) {
+        while (registers.pc.getUnsignedValue() != address.getUnsignedValue()) {
+            runOneInstruction();
         }
+    }
+
+    public void runInstructions(int countOfInstructionsToRun) {
+        for (int i = 0 ; i<countOfInstructionsToRun; i++) {
+            runOneInstruction();
+        }
+    }
+
+    public void runOneInstruction() {
+        XBit16 opcode = fetch();
+        AbstractInstruction instruction = instructionDecoder.decode(opcode);
+        instruction.execute(opcode, this);
+
+        drawer.draw(screenManager.getScreen());
     }
 
     private XBit16 fetch() {

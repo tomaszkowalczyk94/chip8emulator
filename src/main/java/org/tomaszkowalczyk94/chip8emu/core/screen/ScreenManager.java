@@ -10,9 +10,9 @@ public class ScreenManager {
     @Getter boolean[][] screen = new boolean[64][32];
 
     /**
-     *
-     * @param x
-     * @param y
+     * setting pixel on inherit array. Dont display the change. Only setting internal state.
+     * @param x vertical index, Can be from 0 to 64
+     * @param y horizontal index. Can be from 0 to 32
      * @return new pixel value
      */
     public boolean setPixel(int x, int y, boolean turnOn) {

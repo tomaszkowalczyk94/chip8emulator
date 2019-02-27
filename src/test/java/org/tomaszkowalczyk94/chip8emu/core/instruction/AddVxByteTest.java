@@ -12,13 +12,13 @@ public class AddVxByteTest {
     @Test
     public void execute() {
         Chip8 cpu = new Chip8();
-        cpu.getRegisters().generalPurpose[0xF] = XBit8.valueOfUnsigned(0xFF);
+        cpu.getRegisters().generalPurpose[0xA] = XBit8.valueOfUnsigned(0x04);
 
-        XBit16 instruction = XBit16.valueOfUnsigned(0x7AFF);
+        XBit16 instruction = XBit16.valueOfUnsigned(0x7A04);
 
         new AddVxByte().execute(instruction, cpu);
 
-        assertEquals(0xFF, cpu.getRegisters().generalPurpose[0xF].getUnsignedValue());
+        assertEquals(0x08, cpu.getRegisters().generalPurpose[0xA].getUnsignedValue());
         assertEquals(0x202, cpu.getRegisters().pc.getUnsignedValue());
     }
 }

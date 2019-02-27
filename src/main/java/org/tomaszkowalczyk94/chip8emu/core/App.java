@@ -10,6 +10,6 @@ public class App
     {
         Chip8 chip8 = new Chip8();
 
-        chip8.run();
+        chip8.runInstructions(100);
     }
 }

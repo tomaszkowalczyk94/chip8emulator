@@ -44,7 +44,7 @@ public class DrwVxVyNibble extends AbstractInstruction {
      * @param chip8
      * @param xPos horizontal position of sprite in display. The top of display have 0 value.
      * @param yPos vertical position of sprite in display. TMost on the left have 0 value.
-     * @param n
+     * @param n count of bytes with a sprite
      */
     private void drawSprite(Chip8 chip8, int xPos, int yPos, int n) {
         ScreenManager screenManager = chip8.getScreenManager();
@@ -77,10 +77,9 @@ public class DrwVxVyNibble extends AbstractInstruction {
      *
      * @param xPos     horizontal position of sprite in display (where will be put pixel (0,0) of sprite)
      * @param bitIndex index of bit, in sprite. First index have number 7, the last 0.
-     * @return
      */
     private int calculatePositionXInDisplay(int xPos, int bitIndex) {
-        return xPos + 7 - bitIndex;
+        return (xPos + 7 - bitIndex)%64;
     }
 
     /**
@@ -97,7 +96,7 @@ public class DrwVxVyNibble extends AbstractInstruction {
             int firstSpriteMemoryAddress,
             int currentSpriteMemoryAddress
     ) {
-        return currentSpriteMemoryAddress - firstSpriteMemoryAddress + yPos;
+        return (currentSpriteMemoryAddress - firstSpriteMemoryAddress + yPos)%63;
     }
 
 }
